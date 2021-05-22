@@ -1,0 +1,119 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+/* For use in src/lib/core/theming/_palette.scss */
+$green-palette: (
+  50 : #edf5ea,
+  100 : #d2e5ca,
+  200 : #b5d4a7,
+  300 : #97c284,
+  400 : #80b569,
+  500 : #6aa84f,
+  600 : #62a048,
+  700 : #57973f,
+  800 : #4d8d36,
+  900 : #3c7d26,
+  A100 : #cdffbe,
+  A200 : #a6ff8b,
+  A400 : #7fff58,
+  A700 : #6cff3f,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$blue-palette: (
+  50 : #eef0f8,
+  100 : #d4d8ed,
+  200 : #b8bfe1,
+  300 : #9ca5d5,
+  400 : #8691cc,
+  500 : #717ec3,
+  600 : #6976bd,
+  700 : #5e6bb5,
+  800 : #5461ae,
+  900 : #424ea1,
+  A100 : #f6f7ff,
+  A200 : #c3caff,
+  A400 : #909dff,
+  A700 : #7687ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+
+
+/* For use in src/lib/core/theming/_palette.scss */
+$red-palette: (
+  50 : #f7e6e4,
+  100 : #ecc2bc,
+  200 : #e09990,
+  300 : #d37064,
+  400 : #c95142,
+  500 : #c03221,
+  600 : #ba2d1d,
+  700 : #b22618,
+  800 : #aa1f14,
+  900 : #9c130b,
+  A100 : #ffccca,
+  A200 : #ff9b97,
+  A400 : #ff6a64,
+  A700 : #ff514b,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$angular-material-app-green: mat-palette($green-palette);
+$angular-material-app-accent: mat-palette($blue-palette);
+$angular-material-app-warn: mat-palette($red-palette);
+
+$angular-material-app-theme: mat-dark-theme(
+    $angular-material-app-green,
+    $angular-material-app-accent,
+    $angular-material-app-warn
+);
+
+$theme: $angular-material-app-theme;
+@include angular-material-theme($theme);
