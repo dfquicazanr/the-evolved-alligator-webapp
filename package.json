@@ -10,8 +10,10 @@
     "e2e": "ng e2e",
     "prepare": "husky install"
   },
-  "hooks": {
-    "pre-commit": "echo kk && git secret hide"
+  "husky": {
+    "hooks": {
+      "pre-commit": "echo kk && git secret hide"
+    }
   },
   "private": false,
   "dependencies": {
