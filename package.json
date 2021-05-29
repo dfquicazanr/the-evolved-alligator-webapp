@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "prepare": "npx husky install"
+    "prepare": "npx husky install && git config --unset core.hookspath"
   },
   "husky": {
     "hooks": {
