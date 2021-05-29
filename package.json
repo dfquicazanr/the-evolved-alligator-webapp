@@ -13,7 +13,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "git secret hide",
-      "post-merge": "git secret reveal"
+      "post-merge": "git secret reveal -f"
     }
   },
   "private": false,
