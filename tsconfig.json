@@ -22,7 +22,9 @@
     ],
     "paths": {
       "~auth/*": ["app/modules/auth/*"],
-      "~services/*": ["app/services/*"]
+      "~services/*": ["app/services/*"],
+      "~guards/*": ["app/guards/*"],
+      "~interceptors/*": ["app/interceptors/*"]
     }
   },
   "angularCompilerOptions": {
