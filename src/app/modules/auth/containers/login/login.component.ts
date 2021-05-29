@@ -25,7 +25,10 @@ export class LoginComponent implements OnInit {
     this.loginButtonActive = false;
     const { username, password } = this.loginForm.getRawValue();
     this.authService.signIn(username, password)
-      .then(data => console.log(data))
+      .then(data => {
+        this.loginButtonActive = true;
+        console.log(data);
+      })
       .catch(() => this.loginButtonActive = true);
   }
 }
