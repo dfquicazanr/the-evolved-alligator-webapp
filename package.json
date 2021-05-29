@@ -12,7 +12,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "echo kkk && git secret hide"
+      "pre-commit": "git secret hide",
+      "post-merge": "git secret reveal"
     }
   },
   "private": false,
