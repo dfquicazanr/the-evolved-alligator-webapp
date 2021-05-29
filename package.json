@@ -10,7 +10,7 @@
     "e2e": "ng e2e"
   },
   "hooks": {
-    "pre-commit": "git secret hide"
+    "pre-commit": "echo kk && git secret hide"
   },
   "private": false,
   "dependencies": {
