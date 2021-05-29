@@ -21,7 +21,8 @@
       "dom"
     ],
     "paths": {
-      "~auth/*": ["app/modules/auth/*"]
+      "~auth/*": ["app/modules/auth/*"],
+      "~services/*": ["app/services/*"]
     }
   },
   "angularCompilerOptions": {
