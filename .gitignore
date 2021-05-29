@@ -47,3 +47,4 @@ Thumbs.db
 .gitsecret/keys/random_seed
 src/environments/*.ts
 src/aws-exports.js
+.husky/
