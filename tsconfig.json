@@ -24,7 +24,9 @@
       "~auth/*": ["app/modules/auth/*"],
       "~services/*": ["app/services/*"],
       "~guards/*": ["app/guards/*"],
-      "~interceptors/*": ["app/interceptors/*"]
+      "~interceptors/*": ["app/interceptors/*"],
+      "~environments/*": ["environments/*"],
+      "~store/*": ["app/store/*"]
     }
   },
   "angularCompilerOptions": {

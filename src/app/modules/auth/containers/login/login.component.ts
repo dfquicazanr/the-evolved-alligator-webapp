@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '~services/auth/auth.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '~services/auth/auth.service';
+import {Store} from "@ngrx/store";
+import {AppState} from "~store/reducers";
+import * as AuthActions from "~store/actions/auth/auth.actions";
+import {selectLoggedIn} from "~store/selectors/auth/auth.selectors";
 
 @Component({
   selector: 'app-login',
@@ -10,13 +14,14 @@ import {AuthService} from '~services/auth/auth.service';
 export class LoginComponent implements OnInit {
 
   loginButtonActive = true;
+  loggedIn$ = this.store.select(selectLoggedIn);
 
   loginForm = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
   });
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private store: Store<AppState>) { }
 
   ngOnInit(): void {
   }
@@ -24,11 +29,6 @@ export class LoginComponent implements OnInit {
   login(): void {
     this.loginButtonActive = false;
     const { username, password } = this.loginForm.getRawValue();
-    this.authService.signIn(username, password)
-      .then(data => {
-        this.loginButtonActive = true;
-        console.log(data);
-      })
-      .catch(() => this.loginButtonActive = true);
+    this.store.dispatch(AuthActions.login({username, password}));
   }
 }

@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "the-evolved-alligator-webapp"
+  "defaultProject": "the-evolved-alligator-webapp",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

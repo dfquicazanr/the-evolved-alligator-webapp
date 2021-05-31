@@ -1,4 +1,5 @@
 <div class="login">
+  {{loggedIn$ | async}}
   <div class="login__box">
     <h1 class="login__box__title">TEA</h1>
     <form class="login__box__form" [formGroup]="loginForm">
