@@ -1,0 +1,22 @@
+@import "src/styles/colors";
+
+.admin-header {
+  background-color: mat-color($green-palette, 100);
+  display: grid;
+  grid-template-columns: 20% auto 45px;
+
+  &__title {
+    padding: 15px;
+    margin: 0;
+    color: mat-color($blue-palette, 900);
+    font-size: xxx-large;
+    font-weight: bolder;
+  }
+
+  &__logout {
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    padding-right: 15px;
+  }
+}

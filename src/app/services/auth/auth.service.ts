@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Auth } from 'aws-amplify';
-import { from, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {from, Observable, of} from 'rxjs';
+import {catchError, map, tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,9 @@ import { map } from 'rxjs/operators';
 export class AuthService {
 
   signIn(username: string, password: string): Observable<any> {
-    return from(Auth.signIn(username, password));
+    return from(Auth.signIn(username, password)).pipe(
+      tap(data => console.log(data))
+    );
   }
 
   signOut(): Observable<any> {
@@ -28,6 +30,16 @@ export class AuthService {
       .pipe(
         map(user => Auth.changePassword(user, oldPassword, newPassword)
         )
+      );
+  }
+
+  isUserAuthenticated(): Observable<boolean> {
+    return from(Auth.currentAuthenticatedUser())
+      .pipe(
+        tap(data => console.log(data)),
+        map(() => true),
+        catchError(() => of(false)),
+        tap(data => console.log(data)),
       );
   }
 

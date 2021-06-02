@@ -10,12 +10,15 @@ export interface AuthState {
 }
 
 export const initialState: AuthState = {
-  loggedIn: false
+  loggedIn: false,
 };
 
 const authReducer = createReducer(
   initialState,
-  on(AuthActions.login, (prevState: AuthState) => ({...prevState, loggedIn: true}))
+  on(AuthActions.loginSuccess, (prevState: AuthState) => ({...prevState, loggedIn: true})),
+  on(AuthActions.loginFailure, (prevState: AuthState) => ({...prevState, loggedIn: false})),
+  on(AuthActions.logoutSuccess, (prevState: AuthState) => ({...prevState, loggedIn: false})),
+  on(AuthActions.checkAuthSuccess, (prevState: AuthState, {loggedIn}) => ({...prevState, loggedIn}))
 );
 
 export const reducer = (state = initialState, action: Action): AuthState => {

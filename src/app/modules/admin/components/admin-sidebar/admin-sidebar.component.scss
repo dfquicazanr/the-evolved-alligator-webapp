@@ -1,0 +1,12 @@
+@import "src/styles/colors";
+
+.admin-sidebar {
+  height: 100%;
+  background-color: mat-color($blue-palette, 100);
+  padding: 0;
+
+  &__item {
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+}

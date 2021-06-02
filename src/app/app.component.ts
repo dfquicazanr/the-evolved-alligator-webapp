@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {Store} from '@ngrx/store';
+import * as AuthActions from '~store/actions/auth/auth.actions';
 
 @Component({
   selector: 'app-root',
@@ -6,10 +8,12 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'the-evolved-alligator-webapp';
+
+  constructor(private store: Store) {
+  }
 
   ngOnInit(): void {
-
+    this.store.dispatch(AuthActions.checkAuth());
   }
 
 }
