@@ -5,7 +5,7 @@ import {
   HttpEvent,
   HttpInterceptor
 } from '@angular/common/http';
-import {Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
 import {fromPromise} from 'rxjs/internal-compatibility';
 import {catchError, mergeMap} from 'rxjs/operators';
 import {AuthService} from '~services/auth/auth.service';

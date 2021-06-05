@@ -12,6 +12,9 @@ import { EffectsModule } from '@ngrx/effects';
 import {metaReducers, reducers} from '~store/reducers';
 import {AppEffects} from '~store/app.effects';
 import {AuthEffects} from '~store/effects/auth/auth.effects';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AuthHeadersInterceptor} from '~interceptors/auth-headers/auth-headers.service';
+import {PostEffects} from '~store/effects/post/post.effects';
 
 
 @NgModule({
@@ -26,9 +29,12 @@ import {AuthEffects} from '~store/effects/auth/auth.effects';
       metaReducers
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([AppEffects, AuthEffects])
+    EffectsModule.forRoot([AppEffects, AuthEffects, PostEffects]),
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthHeadersInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -12,6 +12,9 @@ import { AdminPostsComponent } from './container/admin-posts/admin-posts.compone
 import { AdminStatsComponent } from './container/admin-stats/admin-stats.component';
 import { AdminTagsComponent } from './container/admin-tags/admin-tags.component';
 import { AdminUsersComponent } from './container/admin-users/admin-users.component';
+import {AngularEditorModule} from '@kolkov/angular-editor';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -30,7 +33,10 @@ import { AdminUsersComponent } from './container/admin-users/admin-users.compone
     AdminRoutingModule,
     MatIconModule,
     MatListModule,
-    MatDividerModule
+    MatDividerModule,
+    AngularEditorModule,
+    HttpClientModule,
+    FormsModule
   ]
 })
 export class AdminModule { }
