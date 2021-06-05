@@ -1,15 +1,22 @@
 import { createAction, props } from '@ngrx/store';
 
+export enum FileActionTypes {
+  UploadFiles = '[File] Upload Files',
+  UploadFilesSuccess = '[File] Upload Files Success',
+  UploadFilesFailure = '[File] Upload Files Failure'
+}
+
 export const uploadFiles = createAction(
-  '[File] Upload Files'
+  FileActionTypes.UploadFiles,
+  props<{file: File}>()
 );
 
 export const uploadFilesSuccess = createAction(
-  '[File] Upload Files Success',
+  FileActionTypes.UploadFilesSuccess,
   props<{ data: any }>()
 );
 
 export const uploadFilesFailure = createAction(
-  '[File] Upload Files Failure',
+  FileActionTypes.UploadFilesFailure,
   props<{ error: any }>()
 );

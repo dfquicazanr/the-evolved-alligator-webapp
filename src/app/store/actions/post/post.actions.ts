@@ -1,29 +1,40 @@
 import { createAction, props } from '@ngrx/store';
+import {Post} from '~models/post/post';
+
+export enum PostActionTypes {
+  LoadPosts = '[Post] Load Posts',
+  LoadPostsSuccess = '[Post] Load Posts Success',
+  LoadPostsFailure = '[Post] Load Posts Failure',
+  CreatePost = '[Post] Create Post',
+  CreatePostSuccess = '[Post] Create Post Success',
+  CreatePostFailure = '[Post] Create Post Failure'
+}
 
 export const loadPosts = createAction(
-  '[Post] Load Posts'
+  PostActionTypes.LoadPosts
 );
 
 export const loadPostsSuccess = createAction(
-  '[Post] Load Posts Success',
+  PostActionTypes.LoadPostsSuccess,
   props<{ data: any }>()
 );
 
 export const loadPostsFailure = createAction(
-  '[Post] Load Posts Failure',
+  PostActionTypes.LoadPostsFailure,
   props<{ error: any }>()
 );
 
 export const createPost = createAction(
-  '[Post] Create Post'
+  PostActionTypes.CreatePost,
+  props<{ post: Post }>()
 );
 
 export const createPostSuccess = createAction(
-  '[Post] Create Post Success',
+  PostActionTypes.CreatePostSuccess,
   props<{ data: any }>()
 );
 
 export const createPostFailure = createAction(
-  '[Post] Create Post Failure',
+  PostActionTypes.CreatePostFailure,
   props<{ error: any }>()
 );
