@@ -3,6 +3,7 @@ export interface Post {
   date: string;
   resources: {
     filename: string,
-    file: File
+    file: File,
+    filePath?: string
   }[];
 }
