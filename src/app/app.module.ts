@@ -17,7 +17,6 @@ import {AuthHeadersInterceptor} from '~interceptors/auth-headers/auth-headers.se
 import {PostEffects} from '~store/effects/post/post.effects';
 import {FileEffects} from '~store/effects/file/file.effects';
 
-
 @NgModule({
   declarations: [
     AppComponent
@@ -29,12 +28,12 @@ import {FileEffects} from '~store/effects/file/file.effects';
     StoreModule.forRoot(reducers, {
       metaReducers
     }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
     EffectsModule.forRoot([AppEffects, AuthEffects, PostEffects, FileEffects]),
     HttpClientModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthHeadersInterceptor, multi: true }
+    {provide: HTTP_INTERCEPTORS, useClass: AuthHeadersInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

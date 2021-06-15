@@ -27,7 +27,8 @@
       "~interceptors/*": ["app/interceptors/*"],
       "~environments/*": ["environments/*"],
       "~store/*": ["app/store/*"],
-      "~models/*": ["app/models/*"]
+      "~models/*": ["app/models/*"],
+      "~pipes/*": ["app/pipes/*"]
     }
   },
   "angularCompilerOptions": {

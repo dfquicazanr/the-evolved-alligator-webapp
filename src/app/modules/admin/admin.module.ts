@@ -14,7 +14,8 @@ import { AdminTagsComponent } from './container/admin-tags/admin-tags.component'
 import { AdminUsersComponent } from './container/admin-users/admin-users.component';
 import {AngularEditorModule} from '@kolkov/angular-editor';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from "@angular/forms";
+import {FormsModule} from '@angular/forms';
+import {AppModule} from '../../app.module';
 
 
 

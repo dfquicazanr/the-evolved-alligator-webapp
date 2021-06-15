@@ -1,4 +1,4 @@
 <div class="admin-posts">
-  <angular-editor [placeholder]="'This is just a test'" [(ngModel)]="testText"></angular-editor>
+  <angular-editor [placeholder]="'This is just a test'" [(ngModel)]="testText" [config]="{sanitize: false, editable: true}"></angular-editor>
   <button (click)="createPost()">Click</button>
 </div>
