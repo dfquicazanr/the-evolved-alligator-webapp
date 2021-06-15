@@ -11,22 +11,11 @@ import {Post} from '~models/post/post';
   styleUrls: ['./admin-posts.component.scss']
 })
 export class AdminPostsComponent implements OnInit {
-  testText = '<head><title>kk</title></head><body><div>kk</div></body>';
+  testText = '';
 
   constructor(private store: Store, private fileService: FileService) { }
 
   ngOnInit(): void {
-    const data = new Blob([this.testText], {
-      type: 'text/html'
-    });
-    const file = this.fileService.blobToFile(data, 'kk.html');
-    this.fileService.getSignedS3Url('tea-posts', 'kk.html')
-      .subscribe(
-        d => {
-          const url = d.url;
-          this.fileService.putFileOnSignedUrl(url, file).subscribe(da => console.log(da));
-        }
-      );
   }
 
   createPost(): void {
@@ -45,6 +34,7 @@ export class AdminPostsComponent implements OnInit {
   }
 
   prepareFile(): File {
+    console.log(this.testText);
     const data = new Blob([this.testText], {
       type: 'text/html'
     });

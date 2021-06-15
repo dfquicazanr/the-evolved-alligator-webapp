@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import * as PostActions from '~store/actions/post/post.actions';
 import * as FileActions from '~store/actions/file/file.actions';
-import {exhaustMap, switchMap, take} from 'rxjs/operators';
+import {catchError, exhaustMap, switchMap, take} from 'rxjs/operators';
 import {PostService} from '~services/post/post.service';
 import {Store} from '@ngrx/store';
 import {Post} from '~models/post/post';
@@ -20,10 +20,19 @@ export class PostEffects {
     () => this.actions$.pipe(
       ofType(PostActions.createPost),
       exhaustMap((payload: {post: Post}) => {
-          return this.postService.create(payload.post).pipe(
+          const postWithoutFiles = {
+            ...payload.post,
+            resources: payload.post.resources.map(resource => {
+              const {file, ...resourceWithoutFile} = resource;
+              return resourceWithoutFile;
+            })
+          };
+          const resourcesFiles = payload.post.resources.map(resource => ({file: resource.file}));
+          return this.postService.create(postWithoutFiles).pipe(
             switchMap((createdPost: Post) => {
-              const {file, filePath = ''} = createdPost.resources[0];
-              this.store.dispatch(FileActions.uploadFile({file, filePath}));
+              const {s3SignedUrl = ''} = createdPost.resources[0];
+              const {file} = resourcesFiles[0];
+              this.store.dispatch(FileActions.uploadFile({file, filePath: s3SignedUrl}));
               return this.actions$.pipe(
                 ofType(FileActions.uploadFileSuccess, FileActions.uploadFileFailure),
                 take(1),
@@ -32,7 +41,8 @@ export class PostEffects {
                   of(PostActions.createPostFailure({error: 'Error'}))
                 )
               );
-            })
+            }),
+            catchError((error: any) => of(PostActions.createPostFailure({error})))
           );
         }
       )

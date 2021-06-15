@@ -4,6 +4,7 @@ export interface Post {
   resources: {
     filename: string,
     file: File,
-    filePath?: string
+    filePath?: string,
+    s3SignedUrl?: string
   }[];
 }
