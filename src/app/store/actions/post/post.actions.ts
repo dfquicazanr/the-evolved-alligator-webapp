@@ -7,7 +7,10 @@ export enum PostActionTypes {
   LoadPostsFailure = '[Post] Load Posts Failure',
   CreatePost = '[Post] Create Post',
   CreatePostSuccess = '[Post] Create Post Success',
-  CreatePostFailure = '[Post] Create Post Failure'
+  CreatePostFailure = '[Post] Create Post Failure',
+  DeletePost = '[Post] Delete Post',
+  DeletePostSuccess = '[Post] Delete Post Success',
+  DeletePostFailure = '[Post] Delete Post Failure'
 }
 
 export const loadPosts = createAction(
@@ -16,7 +19,7 @@ export const loadPosts = createAction(
 
 export const loadPostsSuccess = createAction(
   PostActionTypes.LoadPostsSuccess,
-  props<{ data: any }>()
+  props<{ posts: any[] }>()
 );
 
 export const loadPostsFailure = createAction(
@@ -36,5 +39,19 @@ export const createPostSuccess = createAction(
 
 export const createPostFailure = createAction(
   PostActionTypes.CreatePostFailure,
+  props<{ error: any }>()
+);
+
+export const deletePost = createAction(
+  PostActionTypes.DeletePost,
+  props<{ postKey: string }>()
+);
+
+export const deletePostSuccess = createAction(
+  PostActionTypes.DeletePostSuccess
+);
+
+export const deletePostFailure = createAction(
+  PostActionTypes.DeletePostFailure,
   props<{ error: any }>()
 );

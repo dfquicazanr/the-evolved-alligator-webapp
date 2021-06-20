@@ -15,7 +15,11 @@ import { AdminUsersComponent } from './container/admin-users/admin-users.compone
 import {AngularEditorModule} from '@kolkov/angular-editor';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
-import {AppModule} from '../../app.module';
+import {MatButtonModule} from '@angular/material/button';
+import { YesNoDialogComponent } from './container/yes-no-dialog/yes-no-dialog.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatInputModule} from "@angular/material/input";
 
 
 
@@ -27,7 +31,8 @@ import {AppModule} from '../../app.module';
     AdminPostsComponent,
     AdminStatsComponent,
     AdminTagsComponent,
-    AdminUsersComponent
+    AdminUsersComponent,
+    YesNoDialogComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +42,11 @@ import {AppModule} from '../../app.module';
     MatDividerModule,
     AngularEditorModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    MatInputModule
   ]
 })
 export class AdminModule { }

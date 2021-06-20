@@ -1,4 +1,11 @@
 <div class="admin-posts">
+  <mat-list class="admin-posts__list">
+    <mat-list-item class="admin-posts__list__item" *ngFor="let post of posts$ | async">
+      <label>{{post.title}}</label>
+      <button mat-flat-button class="admin-posts__list__item__button" color="primary">Edit</button>
+      <button mat-flat-button class="admin-posts__list__item__button" color="warn" (click)="deletePost(post)">Delete</button>
+    </mat-list-item>
+  </mat-list>
   <angular-editor [placeholder]="'This is just a test'" [(ngModel)]="testText" [config]="{sanitize: false, editable: true}"></angular-editor>
   <button (click)="createPost()">Click</button>
 </div>

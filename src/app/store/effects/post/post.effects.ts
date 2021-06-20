@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import * as PostActions from '~store/actions/post/post.actions';
 import * as FileActions from '~store/actions/file/file.actions';
-import {catchError, exhaustMap, switchMap, take} from 'rxjs/operators';
+import {catchError, exhaustMap, map, switchMap, take} from 'rxjs/operators';
 import {PostService} from '~services/post/post.service';
 import {Store} from '@ngrx/store';
 import {Post} from '~models/post/post';
@@ -49,4 +49,27 @@ export class PostEffects {
     )
   );
 
+  $list = createEffect(
+    () => this.actions$.pipe(
+      ofType(PostActions.loadPosts),
+      exhaustMap(() =>
+        this.postService.list().pipe(
+          map((posts: any[]) => PostActions.loadPostsSuccess({posts})),
+          catchError( (error: any) => of(PostActions.createPostFailure(error)))
+        )
+      )
+    )
+  );
+
+  $delete = createEffect(
+    () => this.actions$.pipe(
+      ofType(PostActions.deletePost),
+      exhaustMap((payload: {postKey: string}) =>
+      this.postService.delete(payload.postKey).pipe(
+        map(() => PostActions.deletePostSuccess()),
+        catchError( (error: any) => of(PostActions.deletePostFailure(error)))
+      )
+      )
+    )
+  );
 }

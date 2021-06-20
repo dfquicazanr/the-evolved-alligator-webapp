@@ -1,3 +1,19 @@
 .admin-posts {
   display: inline-block;
+
+  &__list {
+    &__item{
+      color: black;
+
+      & ::ng-deep .mat-list-item-content {
+        display: grid;
+        grid-template-columns: auto 70px 70px;
+        grid-column-gap: 5px;
+      }
+
+      &__button {
+        float: right;
+      }
+    }
+  }
 }
