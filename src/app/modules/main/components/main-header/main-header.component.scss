@@ -1,0 +1,21 @@
+@import "src/styles/colors";
+
+.main-header {
+  //width: 100%;
+  display: grid;
+  background-color: mat-color($green-palette, 200);
+  padding: 10px calc(50% - 500px) 20px;
+  grid-template-columns: 90px auto;
+  grid-column-gap: 25px;
+
+  &__logo {
+    width: 100%;
+  }
+
+  &__title {
+    font-size: 80px;
+    line-height: 150px;
+    font-weight: bolder;
+    margin: 0;
+  }
+}
