@@ -4,9 +4,9 @@
   //width: 100%;
   display: grid;
   background-color: mat-color($green-palette, 200);
-  padding: 10px calc(50% - 500px) 20px;
-  grid-template-columns: 90px auto;
-  grid-column-gap: 25px;
+  padding: 15px calc(50% - 500px);
+  grid-template-columns: 70px auto;
+  grid-column-gap: 30px;
 
   &__logo {
     width: 100%;
