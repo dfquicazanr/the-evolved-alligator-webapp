@@ -109,7 +109,7 @@ $angular-material-app-green: mat-palette($green-palette);
 $angular-material-app-accent: mat-palette($blue-palette);
 $angular-material-app-warn: mat-palette($red-palette);
 
-$angular-material-app-theme: mat-dark-theme(
+$angular-material-app-theme: mat-light-theme(
     $angular-material-app-green,
     $angular-material-app-accent,
     $angular-material-app-warn

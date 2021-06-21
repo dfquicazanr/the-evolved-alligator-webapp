@@ -6,6 +6,12 @@
       <button mat-flat-button class="admin-posts__list__item__button" color="warn" (click)="deletePost(post)">Delete</button>
     </mat-list-item>
   </mat-list>
-  <angular-editor [placeholder]="'This is just a test'" [(ngModel)]="testText" [config]="{sanitize: false, editable: true}"></angular-editor>
-  <button (click)="createPost()">Click</button>
+  <form [formGroup]="postForm" class="admin-posts__form">
+    <mat-form-field appearance="outline" color="primary">
+      <mat-label>Post Title</mat-label>
+      <input matInput type="text" placeholder="Post Title" formControlName="title">
+    </mat-form-field>
+    <angular-editor [placeholder]="'This is just a test'" formControlName="content" [config]="{ sanitize: false, editable: true }"></angular-editor>
+    <button mat-raised-button color="primary" (click)="createPost()">Click</button>
+  </form>
 </div>

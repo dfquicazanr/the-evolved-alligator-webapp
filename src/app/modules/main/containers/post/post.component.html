@@ -1,0 +1,5 @@
+<div class="post">
+  <h2 class="post__title">{{post.title}}</h2>
+  <h4 class="post__date">{{post.date | date: 'fullDate'}}</h4>
+  <div [innerHTML]="post.resources[0].filePath | getFile | asyncSafeHtml | async"></div>
+</div>

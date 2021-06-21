@@ -36,9 +36,14 @@ export class PostEffects {
               return this.actions$.pipe(
                 ofType(FileActions.uploadFileSuccess, FileActions.uploadFileFailure),
                 take(1),
-                switchMap(action => action.type === FileActionTypes.UploadFileSuccess ?
-                  of(PostActions.createPostSuccess(this.cloneService.clone(createdPost))) :
-                  of(PostActions.createPostFailure({error: 'Error'}))
+                switchMap(action => {
+                  if (action.type === FileActionTypes.UploadFileSuccess) {
+                    this.store.dispatch(PostActions.loadPosts());
+                    return of(PostActions.createPostSuccess(this.cloneService.clone(createdPost)));
+                  } else {
+                    return of(PostActions.createPostFailure({error: 'Error'}));
+                  }
+                }
                 )
               );
             }),
@@ -66,7 +71,10 @@ export class PostEffects {
       ofType(PostActions.deletePost),
       exhaustMap((payload: {postKey: string}) =>
       this.postService.delete(payload.postKey).pipe(
-        map(() => PostActions.deletePostSuccess()),
+        map(() => {
+          this.store.dispatch(PostActions.loadPosts());
+          return PostActions.deletePostSuccess();
+        }),
         catchError( (error: any) => of(PostActions.deletePostFailure(error)))
       )
       )

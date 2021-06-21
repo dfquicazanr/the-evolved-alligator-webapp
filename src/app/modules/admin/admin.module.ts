@@ -14,7 +14,7 @@ import { AdminTagsComponent } from './container/admin-tags/admin-tags.component'
 import { AdminUsersComponent } from './container/admin-users/admin-users.component';
 import {AngularEditorModule} from '@kolkov/angular-editor';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import { YesNoDialogComponent } from './container/yes-no-dialog/yes-no-dialog.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -46,7 +46,8 @@ import {MatInputModule} from "@angular/material/input";
     MatButtonModule,
     MatFormFieldModule,
     MatDialogModule,
-    MatInputModule
+    MatInputModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

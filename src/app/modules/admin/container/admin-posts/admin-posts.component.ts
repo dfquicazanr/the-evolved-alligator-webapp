@@ -6,9 +6,10 @@ import {Post} from '~models/post/post';
 import {selectPosts} from '~store/selectors/post/post.selectors';
 import {AppState} from '~store/reducers';
 import {MatDialog} from '@angular/material/dialog';
-import {YesNoDialogComponent} from "../yes-no-dialog/yes-no-dialog.component";
-import {filter, map} from "rxjs/operators";
-import {Observable} from "rxjs";
+import {YesNoDialogComponent} from '../yes-no-dialog/yes-no-dialog.component';
+import {filter, map} from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -17,8 +18,13 @@ import {Observable} from "rxjs";
   styleUrls: ['./admin-posts.component.scss']
 })
 export class AdminPostsComponent implements OnInit {
-  testText = '';
   posts$ = this.store.select(selectPosts);
+
+  postForm = new FormGroup({
+    title: new FormControl('', Validators.required),
+    date: new FormControl(new Date().toISOString()),
+    content: new FormControl('')
+  });
 
   constructor(private store: Store<AppState>, private fileService: FileService, public dialog: MatDialog) { }
 
@@ -31,13 +37,14 @@ export class AdminPostsComponent implements OnInit {
   }
 
   createPost(): void {
-    const file = this.prepareFile();
+    const {title, date, content} = this.postForm.getRawValue();
+    const file = this.prepareFile(content);
     const post: Post = {
-      title: 'Test post',
-      date: new Date().toISOString(),
+      title,
+      date,
       resources: [
         {
-          filename: 'kk.html',
+          filename: 'index.html',
           file
         }
       ]
@@ -45,18 +52,17 @@ export class AdminPostsComponent implements OnInit {
     this.store.dispatch(PostActions.createPost({ post }));
   }
 
-  prepareFile(): File {
-    console.log(this.testText);
-    const data = new Blob([this.testText], {
+  prepareFile(content: string): File {
+    const data = new Blob([content], {
       type: 'text/html'
     });
-    return this.fileService.blobToFile(data, 'kk.html');
+    return this.fileService.blobToFile(data, 'index.html');
   }
 
   deletePost(post: any): void {
     this.openYesNoDialog('Delete Post', 'Are you sure you want to delete this post?')
       .pipe(filter(response => response))
-      .subscribe(() => console.log('delete post'));
+      .subscribe(() => this.store.dispatch(PostActions.deletePost({postKey: post.sk})));
   }
 
   openYesNoDialog(title: string, content: string): Observable<boolean> {

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {selectPosts} from '~store/selectors/post/post.selectors';
+import {Store} from '@ngrx/store';
+import {AppState} from '~store/reducers';
+import * as PostActions from '~store/actions/post/post.actions';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  posts$ = this.store.select(selectPosts);
+
+
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
+    this.listPosts();
   }
 
+  listPosts(): void {
+    this.store.dispatch(PostActions.loadPosts());
+  }
 }

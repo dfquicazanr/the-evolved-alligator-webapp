@@ -8,23 +8,10 @@ import {Observable} from 'rxjs';
 })
 export class FileService {
 
-  filesUrl = `${environment.apiPath}/files`;
-
   private httpClientWithoutInterceptor: HttpClient;
 
   constructor(private httpClient: HttpClient, private httpBackend: HttpBackend) {
     this.httpClientWithoutInterceptor = new HttpClient(this.httpBackend);
-  }
-
-  getSignedS3Url(bucketName: string, fileName: string): Observable<any> {
-    return this.httpClient.get(
-      `${this.filesUrl}/signed-url`,
-      {params: {
-          bucketName,
-          fileName
-        }
-      }
-    );
   }
 
   putFileOnSignedUrl(url: string, file: File): Observable<any> {
@@ -33,6 +20,10 @@ export class FileService {
 
   blobToFile(theBlob: Blob, fileName: string): File {
     return new File([theBlob], fileName);
+  }
+
+  getFile(fileUrl: string): Observable<any> {
+    return this.httpClientWithoutInterceptor.get(fileUrl, {responseType: 'text'});
   }
 
 }
