@@ -16,6 +16,30 @@ export class PostEffects {
 
   constructor(private store: Store, private actions$: Actions, private postService: PostService, private cloneService: CloneService) {}
 
+  $list = createEffect(
+    () => this.actions$.pipe(
+      ofType(PostActions.loadPosts),
+      exhaustMap(() =>
+        this.postService.list().pipe(
+          map((posts: any[]) => PostActions.loadPostsSuccess({posts})),
+          catchError( (error: any) => of(PostActions.loadPostsFailure(error)))
+        )
+      )
+    )
+  );
+
+  $get = createEffect(
+    () => this.actions$.pipe(
+      ofType(PostActions.getPost),
+      exhaustMap((payload: {postKey: string}) =>
+        this.postService.get(payload.postKey).pipe(
+          map((post: any) => PostActions.getPostSuccess({post})),
+          catchError( (error: any) => of(PostActions.getPostFailure(error)))
+        )
+      )
+    )
+  );
+
   $create = createEffect(
     () => this.actions$.pipe(
       ofType(PostActions.createPost),
@@ -50,18 +74,6 @@ export class PostEffects {
             catchError((error: any) => of(PostActions.createPostFailure({error})))
           );
         }
-      )
-    )
-  );
-
-  $list = createEffect(
-    () => this.actions$.pipe(
-      ofType(PostActions.loadPosts),
-      exhaustMap(() =>
-        this.postService.list().pipe(
-          map((posts: any[]) => PostActions.loadPostsSuccess({posts})),
-          catchError( (error: any) => of(PostActions.createPostFailure(error)))
-        )
       )
     )
   );

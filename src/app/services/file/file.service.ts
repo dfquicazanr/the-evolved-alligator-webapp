@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {HttpBackend, HttpClient} from '@angular/common/http';
-import {environment} from '~environments/environment';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -22,7 +21,7 @@ export class FileService {
     return new File([theBlob], fileName);
   }
 
-  getFile(fileUrl: string): Observable<any> {
+  getFile(fileUrl: string): Observable<string> {
     return this.httpClientWithoutInterceptor.get(fileUrl, {responseType: 'text'});
   }
 

@@ -7,8 +7,7 @@ import {FileService} from '~services/file/file.service';
 })
 export class GetFilePipe implements PipeTransform {
 
-  constructor(private fileService: FileService) {
-  }
+  constructor(private fileService: FileService) {}
 
   transform(value: string): Observable<string> {
     return this.fileService.getFile(value);

@@ -17,8 +17,16 @@ export class PostService {
     return this.httpClient.get(this.postsUrl);
   }
 
+  get(postKey: string): Observable<any> {
+    return this.httpClient.get(`${this.postsUrl}/${postKey}`);
+  }
+
   create(post: any): Observable<any> {
     return this.httpClient.post(this.postsUrl, post);
+  }
+
+  update(post: any): Observable<any> {
+    return this.httpClient.put(`${this.postsUrl}/${post.postKey}`, post);
   }
 
   delete(postKey: string): Observable<any> {

@@ -5,6 +5,9 @@ export enum PostActionTypes {
   LoadPosts = '[Post] Load Posts',
   LoadPostsSuccess = '[Post] Load Posts Success',
   LoadPostsFailure = '[Post] Load Posts Failure',
+  GetPost = '[Post] Get Post',
+  GetPostSuccess = '[Post] Get Post Success',
+  GetPostFailure = '[Post] Get Post Failure',
   CreatePost = '[Post] Create Post',
   CreatePostSuccess = '[Post] Create Post Success',
   CreatePostFailure = '[Post] Create Post Failure',
@@ -24,6 +27,21 @@ export const loadPostsSuccess = createAction(
 
 export const loadPostsFailure = createAction(
   PostActionTypes.LoadPostsFailure,
+  props<{ error: any }>()
+);
+
+export const getPost = createAction(
+  PostActionTypes.GetPost,
+  props<{ postKey: string }>()
+);
+
+export const getPostSuccess = createAction(
+  PostActionTypes.GetPostSuccess,
+  props<{ post: any }>()
+);
+
+export const getPostFailure = createAction(
+  PostActionTypes.GetPostFailure,
   props<{ error: any }>()
 );
 
